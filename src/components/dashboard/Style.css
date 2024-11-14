@@ -1,0 +1,3 @@
+.navLink {
+    @apply flex items-center space-x-4 py-2.5 px-4 rounded
+}

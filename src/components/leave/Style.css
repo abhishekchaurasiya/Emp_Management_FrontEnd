@@ -1,0 +1,15 @@
+
+.table_head {
+    @apply px-6 py-3 hover:text-white text-center hover:bg-teal-600 transition ease-in duration-300
+}
+.table_data{
+    @apply border px-6 py-4
+}
+
+.employee-input {
+    @apply mt-1 p-2 block w-full border border-gray-300 rounded-md outline-none
+}
+
+.em_lable {
+    @apply text-sm font-medium text-gray-700 block
+}
