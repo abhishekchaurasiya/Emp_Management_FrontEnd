@@ -1,13 +1,13 @@
 
-export const baseUrl = `https://emp-management-backend-eight.vercel.app`;
+export const baseUrl = `http://localhost:3030/dev/api/v1`;
 
-export const authUrl = `${baseUrl}/auth`;
-export const departmentUrl = `${baseUrl}/department`;
-export const employeeUrl = `${baseUrl}/employee`;
-export const leaveUrl = `${baseUrl}/leave`;
-export const salaryUrl = `${baseUrl}/salary`;
-export const settingUrl = `${baseUrl}/setting`;
-export const dashboardUrl = `${baseUrl}/dashboard`;
+export const authUrl = `${baseUrl}/api/auth`;
+export const departmentUrl = `${baseUrl}/api/department`;
+export const employeeUrl = `${baseUrl}/api/employee`;
+export const leaveUrl = `${baseUrl}/api/leave`;
+export const salaryUrl = `${baseUrl}/api/salary`;
+export const settingUrl = `${baseUrl}/api/setting`;
+export const dashboardUrl = `${baseUrl}/api/dashboard`;
 
 
 
