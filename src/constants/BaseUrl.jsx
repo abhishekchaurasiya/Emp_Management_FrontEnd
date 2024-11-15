@@ -1,5 +1,5 @@
 
-export const baseUrl = `http://localhost:3030/dev/api/v1`;
+export const baseUrl = `https://emp-management-backend-eight.vercel.app`;
 
 export const authUrl = `${baseUrl}/api/auth`;
 export const departmentUrl = `${baseUrl}/api/department`;
