@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 
 const Setting = () => {
     const navigate = useNavigate();
-    const { user } = userContext();
+    const { user} = userContext();
     const [password, setPassword] = useState({
         userId: user._id,
         old_password: "",
@@ -46,70 +46,72 @@ const Setting = () => {
     };
 
     return (
-        <div className="max-w-xl mx-auto mt-10 bg-white rounded-md shadow-md md:max-w-2xl">
-            <h1 className="text-2xl font-bold px-6 py-3 shadow-md">
-                Change Password
-            </h1>
-            <form onSubmit={handleSubmit} className="px-6">
-                <div className="grid grid-cols-1 gap-y-3 gap-x-5 py-2">
-                    {/* Old Password */}
-                    <div>
-                        <label htmlFor="old_password" className="em_lable">
-                            Old Password
-                        </label>
-                        <input
-                            type="password"
-                            id="old_password"
-                            name="old_password"
-                            required
-                            className="employee-input"
-                            placeholder="Enter old password"
-                            onChange={handleChange}
-                            value={password.old_password}
-                        />
-                    </div>
-                    {/* New Password */}
-                    <div>
-                        <label htmlFor="new_password" className="em_lable">
-                            New Password
-                        </label>
-                        <input
-                            type="password"
-                            id="new_password"
-                            name="new_password"
-                            required
-                            className="employee-input"
-                            placeholder="Enter new password"
-                            onChange={handleChange}
-                            value={password.new_password}
-                        />
-                    </div>
-                    {/* Confirm Password */}
-                    <div>
-                        <label htmlFor="confirm_password" className="em_lable">
-                            Confirm Password
-                        </label>
-                        <input
-                            type="password"
-                            id="confirm_password"
-                            name="confirm_password"
-                            required
-                            className="employee-input"
-                            placeholder="Enter confirm password"
-                            onChange={handleChange}
-                            value={password.confirm_password}
-                        />
-                    </div>
-                </div>
-                <button
-                    type="submit"
-                    className=" w-[100%] mb-3 rounded-md bg-teal-600 py-2 text-white font-semibold text-xl"
-                >
-                    {" "}
+        <>
+            <div className="max-w-xl mx-auto mt-20 bg-white rounded-md shadow-md md:max-w-2xl">
+                <h1 className="text-2xl font-bold px-6 py-3 shadow-md">
                     Change Password
-                </button>
-            </form>
-        </div>
+                </h1>
+                <form onSubmit={handleSubmit} className="px-6">
+                    <div className="grid grid-cols-1 gap-y-3 gap-x-5 py-2">
+                        {/* Old Password */}
+                        <div>
+                            <label htmlFor="old_password" className="em_lable">
+                                Old Password
+                            </label>
+                            <input
+                                type="password"
+                                id="old_password"
+                                name="old_password"
+                                required
+                                className="employee-input"
+                                placeholder="Enter old password"
+                                onChange={handleChange}
+                                value={password.old_password}
+                            />
+                        </div>
+                        {/* New Password */}
+                        <div>
+                            <label htmlFor="new_password" className="em_lable">
+                                New Password
+                            </label>
+                            <input
+                                type="password"
+                                id="new_password"
+                                name="new_password"
+                                required
+                                className="employee-input"
+                                placeholder="Enter new password"
+                                onChange={handleChange}
+                                value={password.new_password}
+                            />
+                        </div>
+                        {/* Confirm Password */}
+                        <div>
+                            <label htmlFor="confirm_password" className="em_lable">
+                                Confirm Password
+                            </label>
+                            <input
+                                type="password"
+                                id="confirm_password"
+                                name="confirm_password"
+                                required
+                                className="employee-input"
+                                placeholder="Enter confirm password"
+                                onChange={handleChange}
+                                value={password.confirm_password}
+                            />
+                        </div>
+                    </div>
+                    <button
+                        type="submit"
+                        className=" w-[100%] mb-3 rounded-md bg-teal-600 py-2 text-white font-semibold text-xl"
+                    >
+                        {" "}
+                        Change Password
+                    </button>
+                </form>
+            </div>
+        </>
     );
 };
 

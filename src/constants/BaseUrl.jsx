@@ -1,6 +1,8 @@
 
 export const baseUrl = `https://emp-management-backend-eight.vercel.app`;
 
+// export const baseUrl = `http://localhost:3030`;
+
 export const authUrl = `${baseUrl}/api/auth`;
 export const departmentUrl = `${baseUrl}/api/department`;
 export const employeeUrl = `${baseUrl}/api/employee`;

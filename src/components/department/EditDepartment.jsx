@@ -4,16 +4,18 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { departmentUrl } from "../../constants/BaseUrl";
 import { toast } from "react-toastify";
+import { userContext } from "../../context/authContext";
+import Loader from "../../utils/Loader"
 
 const EditDepartment = () => {
   const { id } = useParams();
   const [depData, setDepData] = useState([]);
-  const [depLoading, setDepLoading] = useState(false);
   const navigate = useNavigate();
+  const {dataLoading, setDataLoading} = userContext()
 
   useEffect(() => {
     const fetchDepartment = async () => {
-      setDepLoading(true);
+      setDataLoading(true);
       try {
         const response = await axios.get(
           `${departmentUrl}/get/${id}`,
@@ -31,7 +33,7 @@ const EditDepartment = () => {
           toast.error(error.response.data.error)
         }
       } finally {
-        setDepLoading(false);
+        setDataLoading(false);
       }
     };
 
@@ -70,10 +72,10 @@ const EditDepartment = () => {
 
   return (
     <>
-      {depLoading ? (
-        <div>Loading....</div>
+      {dataLoading ? (
+        <div><Loader/></div>
       ) : (
-        <div className="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md w-96">
+        <div className="max-w-3xl mx-auto mt-20 bg-white p-8 rounded-md shadow-md w-96">
           <h3 className="text-2xl font-bold mb-6">Edit Department</h3>
           {/* {depErrors && <p className="text-red-500">{depErrors}</p>} */}
           <form onSubmit={handleSubmit}>

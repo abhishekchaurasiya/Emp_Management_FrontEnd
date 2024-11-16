@@ -5,12 +5,15 @@ import DataTable from "react-data-table-component";
 import { LeaveButtons, leaveColumns } from "../../utils/LeaveHelper";
 import { leaveUrl } from "../../constants/BaseUrl";
 import { toast } from "react-toastify";
+import { userContext } from "../../context/authContext";
 
 const Table = () => {
   const [leaves, setLeaves] = useState(null);
   const [filteredLeaves, setFilteredLeaves] = useState();
+  const { dataLoading, setDataLoading } = userContext()
 
   const fetchLeaves = async () => {
+    setDataLoading(true)
     try {
       const response = await axios.get(`${leaveUrl}/list`, {
         headers: {
@@ -19,7 +22,7 @@ const Table = () => {
       });
       if (response.data.success) {
         let sno = 1;
-      
+
         const data = await response.data.leaves.map((leave) => ({
           _id: leave._id,
           sno: sno++,
@@ -40,6 +43,8 @@ const Table = () => {
       if (error.response && !error.response.data.success) {
         toast.error(error.response.data.error)
       }
+    }finally{
+      setDataLoading(false)
     }
   };
 
@@ -102,13 +107,19 @@ const Table = () => {
             </Link>
           </div>
         </div>
-        <div className="mt-6">
-          <DataTable
-            columns={leaveColumns}
-            data={filteredLeaves}
-            pagination
-          />
-        </div>
+        {
+          dataLoading? (
+           <div className="text-center font-semibold mt-20">Loading....</div>
+          ) : (
+            <div className="mt-5">
+              <DataTable
+                columns={leaveColumns}
+                data={filteredLeaves}
+                pagination
+              />
+            </div>
+          )
+        }
       </div>
 
     </>

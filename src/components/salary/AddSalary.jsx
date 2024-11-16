@@ -7,6 +7,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { salaryUrl } from "../../constants/BaseUrl";
 import { toast } from "react-toastify";
+import Loader from "../../utils/Loader";
 
 const AddSalary = () => {
   const [salary, setSalary] = useState({
@@ -69,7 +70,7 @@ const AddSalary = () => {
   return (
     <>
       {departments ? (
-        <div className="max-w-4xl mx-auto mt-3 bg-white rounded-md shadow-md ">
+        <div className="max-w-4xl mx-auto mt-20 bg-white rounded-md shadow-md ">
           <h2 className="text-2xl font-bold px-6 py-3 shadow-md">Add Salary</h2>
           <form className="px-4" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-5 py-5">
@@ -188,7 +189,7 @@ const AddSalary = () => {
           </form>
         </div>
       ) : (
-        <div>Loading...</div>
+        <div><Loader/></div>
       )}
     </>
   );

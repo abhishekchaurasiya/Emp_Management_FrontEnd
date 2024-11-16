@@ -7,19 +7,16 @@ import { employeeUrl } from "../../constants/BaseUrl";
 import { toast } from "react-toastify";
 import Buttons from "../reuse_components/Buttons";
 import { userContext } from "../../context/authContext";
-// import { LinearProgress } from "@mui/material";
 
 const ViewEmployee = () => {
   const { id } = useParams();
   const [employeeData, setEmployeeData] = useState({});
-  const [loading, setLoading] = useState(false);
   const formatDate = (dob) => new Date(dob).toLocaleDateString();
-
-  const { user } = userContext();
+  const { user, dataLoading, setDataLoading } = userContext();
 
   // fetch data from API using the id
   const fetchEmployeeData = async () => {
-    setLoading(true);
+    setDataLoading(true);
     try {
       const response = await axios.get(`${employeeUrl}/${id}`, {
         headers: {
@@ -34,7 +31,7 @@ const ViewEmployee = () => {
         toast.error(error.response.data.error);
       }
     } finally {
-      setLoading(false);
+      setDataLoading(false);
     }
   };
 
@@ -44,7 +41,7 @@ const ViewEmployee = () => {
 
   return (
     <>
-      {loading ? (
+      {dataLoading ? (
         <Loader />
       ) : (
         <div className="bg-white py-8 px-6 md:px-16 lg:px-20 xl:px-28 m-6 md:m-10 lg:m-14 rounded-lg shadow-lg flex items-center flex-col">

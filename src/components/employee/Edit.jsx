@@ -6,6 +6,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { employeeUrl } from "../../constants/BaseUrl";
 import { toast } from "react-toastify";
+import Loader from "../../utils/Loader"
+import { userContext } from "../../context/authContext";
+
 
 const Edit = () => {
   const [employee, setEmployeeData] = useState({
@@ -15,9 +18,8 @@ const Edit = () => {
     designation: "",
     salary: 0,
   });
-
+  const { dataLoading, setDataLoading } = userContext()
   const [departments, setDeparments] = useState(null);
-  const [loading, setLoading] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -33,7 +35,7 @@ const Edit = () => {
   // Fetching employee data
   useEffect(() => {
     const fetchEmployeeData = async () => {
-      setLoading(true);
+      setDataLoading(true);
       try {
         const response = await axios.get(
           `${employeeUrl}/${id}`,
@@ -60,7 +62,7 @@ const Edit = () => {
           toast.error(error.response.data.error)
         }
       } finally {
-        setLoading(false);
+        setDataLoading(false);
       }
     };
     fetchEmployeeData();
@@ -98,8 +100,8 @@ const Edit = () => {
 
   return (
     <>
-      {!loading && departments && employee ? (
-        <div className="max-w-4xl mx-auto mt-3 bg-white rounded-md shadow-md ">
+      {!dataLoading && departments && employee ? (
+        <div className="max-w-4xl mx-auto mt-20 bg-white rounded-md shadow-md ">
           <h2 className="text-2xl font-bold px-6 py-3 shadow-md">
             Edit Employee
           </h2>
@@ -203,7 +205,7 @@ const Edit = () => {
           </form>
         </div>
       ) : (
-        <div>Loading.....</div>
+        <div><Loader /></div>
       )}
     </>
   );

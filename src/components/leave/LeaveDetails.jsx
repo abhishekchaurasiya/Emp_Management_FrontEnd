@@ -133,7 +133,7 @@ const LeaveDetails = () => {
           </Buttons>
         </div>
       ) : (
-        <div>Loading.....</div>
+        <div className="text-center font-semibold mt-20">Loading.....</div>
       )}
     </>
   );

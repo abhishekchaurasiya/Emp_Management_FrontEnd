@@ -15,6 +15,9 @@ export const AuthContextProvider = ({ children }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [dataLoading, setDataLoading] = useState(false);
+
+
 
   const ShowInputIcons = ({ inputFunction, inputFunData }) => {
     return (
@@ -86,7 +89,9 @@ export const AuthContextProvider = ({ children }) => {
     setShowConfirmPassword,
     isOpen,
     setIsOpen,
-    ShowInputIcons
+    ShowInputIcons,
+    dataLoading, 
+    setDataLoading
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

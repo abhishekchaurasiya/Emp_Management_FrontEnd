@@ -6,15 +6,17 @@ import { useParams } from "react-router-dom";
 import { userContext } from "../../context/authContext";
 import { salaryUrl } from "../../constants/BaseUrl";
 import { toast } from "react-toastify";
+import Loader from "../../utils/Loader"
 
 const Salary = () => {
   const { id } = useParams();
-  const {user}  = userContext()
- 
+  const { user, dataLoading, setDataLoading } = userContext()
+
   const [salaries, setSalaries] = useState(null);
   const [filterSalaries, setFilterSalaries] = useState(null);
 
   const fetchSalaries = async () => {
+    setDataLoading(true)
     try {
       const response = await axios.get(
         `${salaryUrl}/${id}/${user.role}`,
@@ -33,6 +35,8 @@ const Salary = () => {
       if (error.response && !error.response.data.success) {
         toast.error(error.response.data.error)
       }
+    }finally{
+      setDataLoading(false)
     }
   };
 
@@ -51,7 +55,7 @@ const Salary = () => {
   return (
     <>
       {filterSalaries === null ? (
-        <div className="lg:ps-14">Loading....</div>
+        <div className="lg:ps-14"><Loader/></div>
       ) : (
         <div className="overflow-x-auto p-5 lg:ps-14">
           <div className="text-center">
